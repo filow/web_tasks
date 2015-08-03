@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= @title || '留言板程序示例' %></title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+  <h2>留言板程序示例</h2>
+  <!-- 如果没有专门设定，就认为当前是index页面 -->
+  <% @active_nav ||= 'index' %>
+  <ul class="nav nav-tabs nav-justified">
+    <li class="<%= 'active' if @active_nav == 'index' %>"><a href="/">留言列表</a></li>
+    <li class="<%= 'active' if @active_nav == 'add' %>"><a href="/add">添加留言</a></li>
+  </ul>
+  
+  
+  <%= yield %>
+</body>
+</html>

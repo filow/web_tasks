@@ -1,0 +1,5 @@
+source 'https://ruby.taobao.org'
+# sinatra依赖
+gem 'sinatra'
+
+gem 'erb'

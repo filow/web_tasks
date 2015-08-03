@@ -1,0 +1,41 @@
+<h4>筛选</h4>
+<form class="form-inline" action="/" method="get">
+  <div class="form-group">
+    <label>id: 
+      <input type="text" name="id" class="form-control" value="<%= params[:id] %>">
+    </label>
+  </div>
+  <div class="form-group">
+    <label>作者: 
+      <input type="text" name="author" class="form-control" value="<%= params[:author] %>">
+    </label>
+  </div>
+  <div class="form-group">
+    <label>留言时间: 
+      <input type="date" name="created_at" class="form-control" value="<%= params[:created_at] %>">
+    </label>
+  </div>
+  <div class="pull-right">
+      <button type="submit" class="btn btn-primary">筛选</button>
+  </div>
+</form>
+
+<table class="table">
+  <thead>
+    <th>id</th>
+    <th>留言内容</th>
+    <th>作者</th>
+    <th>留言时间</th> 
+    <th width="60">操作</th> 
+  </thead>
+  <% @msg_list.each do |m| %>
+  <tr>
+    <td><%= m.id %></td>
+    <td><%= m.message %></td>
+    <td><%= m.author %></td>
+    <td><%= m.created_at.strftime("%m-%d %H:%M") %></td>
+    <td><a href="/edit?id=<%= m.id %>" class="btn btn-success">编辑</a></td>
+    <td><a href="/delete?id=<%= m.id %>" class="btn btn-danger">删除</a></td>
+  </tr>
+  <% end %>
+</table>
