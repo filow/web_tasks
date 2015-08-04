@@ -32,10 +32,10 @@
   <tr>
     <td><%= m.id %></td>
     <td><%= m.message %></td>
-    <td><%= m.author %></td>
+    <td><a href="/?author=<%= m.author %>"><%= m.author %></a></td>
     <td><%= m.created_at.strftime("%m-%d %H:%M") %></td>
-    <td><a href="/edit?id=<%= m.id %>" class="btn btn-success">编辑</a></td>
-    <td><a href="/delete?id=<%= m.id %>" class="btn btn-danger">删除</a></td>
+    <td><a href="/<%= m.id %>/edit" class="btn btn-success">编辑</a></td>
+    <td><a href="/<%= m.id %>/delete" class="btn btn-danger" onclick="return confirm('确定要删除这篇文章吗？')">删除</a></td>
   </tr>
   <% end %>
 </table>

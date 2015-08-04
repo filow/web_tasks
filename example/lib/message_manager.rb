@@ -34,7 +34,12 @@ class MessageManager
   end
 
   def add(author, message)
-    msg = Message.new(id: @id+1, author: author, message: message)
+    msg = Message.new(id: @id+1, author: author.strip, message: message.strip)
+    if @list[@id]
+      if @list[@id].author == msg.author && @list[@id].message == msg.message
+        raise "不能重复提交留言！"
+      end
+    end
     # 保证插入在前面，这样就不用重新排序了
     @list[msg.id] = msg
     # 要在实例化之后才能给@id+1,因为实例化可能失败
@@ -66,6 +71,7 @@ class MessageManager
 
   # 修改留言内容
   def edit(id, props={})
+    id = id.to_i
     raise "id为#{id}的留言不存在！" if @list[id].nil?
     props.each do |k,v|
       if [:author, :message, :created_at].include?(k.to_sym)

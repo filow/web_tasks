@@ -26,12 +26,12 @@ class Message
       return value.to_i
     when :author
       raise '没有作者名' if value.nil?
-      raise '作者的长度至少为2' if value.length < 2
-      return value
+      raise '作者的长度至少为2' if value.strip.length < 2
+      return value.strip
     when :message
       raise '没有留言内容' if value.nil?
-      raise '留言的长度至少为10' if value.length < 10
-      return value
+      raise '留言的长度至少为10' if value.strip.length < 10
+      return value.strip
     when :created_at
       raise '修改时间的值不合法' if value.class != Time
       return value
